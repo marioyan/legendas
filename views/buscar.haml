@@ -1,0 +1,9 @@
+- unless @legendas.empty?
+	%ul
+		- @legendas.each do |legenda|
+			%li
+				%a{ :href => "/baixar/#{legenda[:id]}"}
+					= legenda[:nome]
+- else
+	%p
+		Nenhuma legenda encontrada.
