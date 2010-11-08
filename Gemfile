@@ -8,3 +8,8 @@ group :development do
 	gem "shotgun"
 	gem "heroku"
 end
+
+group :test do
+	gem "fakeweb"
+	gem "mocha"
+end

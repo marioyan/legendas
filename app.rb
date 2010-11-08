@@ -1,7 +1,6 @@
 require "rubygems"
 require "sinatra"
 require "haml"
-require "mechanize"
 
 require "lib/legendas"
 
@@ -10,25 +9,23 @@ get "/" do
 end
 
 get "/buscar" do
-  @legendas = []
+  autenticar_como "legendas1517", "legendas1517"
   
-  autenticado_como "legendas1517", "legendas1517" do
-    buscar params[:termo] do |id, nome|
-      @legendas << { :id => id, :nome => nome }
-    end
+  buscar params[:termo] do |legendas|
+    @legendas = legendas
   end
   
   haml :buscar
 end
 
 get "/baixar/:id" do |id|
-  autenticado_como "legendas1517", "legendas1517" do
-    baixar id do |nome, conteudo|
-      response["Content-Type"] = mime_type(File.extname(nome))
-      response["Content-Length"] = conteudo.length
-      response["Content-Disposition"] = "inline"
-      
-      halt conteudo
-    end
+  autenticar_como "legendas1517", "legendas1517"
+  
+  baixar id do |nome, conteudo|
+    response["Content-Type"] = mime_type(File.extname(nome))
+    response["Content-Length"] = conteudo.length
+    response["Content-Disposition"] = "inline; filename=#{nome}"
+    
+    halt conteudo
   end
 end
