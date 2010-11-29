@@ -7,7 +7,7 @@
 		%meta{ "http-equiv" => "Content-type", "content" => "text/html; charset=utf-8" }
 	%body
 		%form{ :action => "buscar", :method => :get }
-			%input{ :type => "text", :size => "15", :name => "termo", :value => params[:termo] }
+			%input{ :type => "text", :size => "50", :name => "termo", :value => params[:termo] }
 			%input{ :type => "submit", :value => "Buscar" }
 		
 		= yield
