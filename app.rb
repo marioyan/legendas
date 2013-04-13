@@ -1,4 +1,4 @@
-set :root,  File.dirname(__FILE__)
+set :root, File.dirname(__FILE__)
 
 before do
   @api = Api.new "legendas1517", "legendas1517", "tmp/cookies.txt"
