@@ -17,5 +17,9 @@ end
 get "/download" do
   subtitle_file = @api.get params[:id]
   
-  send_data subtitle_file.body, :filename => subtitle_file.filename
+  response["Content-Type"] = mime_type(File.extname(subtitle_file.filename))
+  response["Content-Length"] = subtitle_file.body.length
+  response["Content-Disposition"] = "inline; filename=#{subtitle_file.filename}"
+  
+  halt subtitle_file.body
 end
