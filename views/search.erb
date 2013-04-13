@@ -1,0 +1,21 @@
+<h3>Search results for "<%= params[:q] %>"</h3>
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th class="span6">Release</th>
+            <th class="span2">Uploader</th>
+            <th class="span2">Actions</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <% @subtitles.each do |subtitle| %>
+            <tr>
+                <td><%= subtitle.release %></td>
+                <td><%= subtitle.uploader %></td>
+                <td><a class="btn" href="download?id=<%= subtitle.id %>"><i class="icon-download"></i></a></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>

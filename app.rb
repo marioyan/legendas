@@ -1,31 +1,21 @@
-require "rubygems"
-require "sinatra"
-require "haml"
+set :root,  File.dirname(__FILE__)
 
-require "lib/legendas"
+before do
+  @api = Api.new "legendas1517", "legendas1517", "tmp/cookies.txt"
+end
 
 get "/" do
-  haml :index
+  erb :index
 end
 
-get "/buscar" do
-  autenticar_como "legendas1517", "legendas1517"
+get "/search" do
+  @subtitles = @api.search params[:q]
   
-  buscar params[:termo] do |legendas|
-    @legendas = legendas
-  end
-  
-  haml :buscar
+  erb :search
 end
 
-get "/baixar/:id" do |id|
-  autenticar_como "legendas1517", "legendas1517"
+get "/download" do
+  subtitle_file = @api.get params[:id]
   
-  baixar id do |nome, conteudo|
-    response["Content-Type"] = mime_type(File.extname(nome))
-    response["Content-Length"] = conteudo.length
-    response["Content-Disposition"] = "inline; filename=#{nome}"
-    
-    halt conteudo
-  end
+  send_data subtitle_file.body, :filename => subtitle_file.filename
 end

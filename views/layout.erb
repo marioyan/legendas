@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Legendas</title>
+    
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+    
+    <style type="text/css" media="screen">
+        body {
+          padding-top: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Legendas</h1>
+        
+        <form action="search" method="get" class="form-inline">
+            <div class="input-append">
+                <input id="q" name="q" type="text" class="input-xxlarge" placeholder="How I Met You Mother S01 E01 or The Avengers" value="<%= params[:q] %>" />
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="icon-search icon-white"></i>
+                    Search
+                </button>
+            </div>
+        </form>
+        
+        <%= yield %>
+    </div>
+</body>
+
+</html>
